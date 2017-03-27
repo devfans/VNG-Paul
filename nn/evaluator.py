@@ -12,6 +12,31 @@ from torch.autograd import Variable
 
 from utils import level, xp, ranked, lossStreak, winStreak, wins, played
 
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.main = nn.Sequential(
+            nn.Linear(len(X[0]),96),
+            nn.Sigmoid(),
+            nn.Dropout(p=0.1),
+            nn.Linear(96,64),
+            nn.ReLU(),
+            nn.Dropout(p=0.1),
+            nn.Linear(64,32),
+            nn.Sigmoid(),
+            nn.Dropout(p=0.1),
+            nn.Linear(32,16),
+            nn.ReLU(),
+            #nn.Dropout(p=0.1),
+            nn.Linear(16,8),
+            nn.Sigmoid(),
+            #nn.Dropout(p=0.1),
+            nn.Linear(8,1)
+        )
+
+    def forward(self, input):
+        return self.main.forward(input)
+
 def eval(participants):
 
     if len(participants) == 2:
@@ -49,34 +74,8 @@ def eval(participants):
                float(random.randint(0, 30)) # Random hero selected
              ]
 
-
-    class Net(nn.Module):
-        def __init__(self):
-            super(Net, self).__init__()
-            self.main = nn.Sequential(
-                nn.Linear(len(X[0]),96),
-                nn.Sigmoid(),
-                nn.Dropout(p=0.1),
-                nn.Linear(96,64),
-                nn.ReLU(),
-                nn.Dropout(p=0.1),
-                nn.Linear(64,32),
-                nn.Sigmoid(),
-                nn.Dropout(p=0.1),
-                nn.Linear(32,16),
-                nn.ReLU(),
-                #nn.Dropout(p=0.1),
-                nn.Linear(16,8),
-                nn.Sigmoid(),
-                #nn.Dropout(p=0.1),
-                nn.Linear(8,1)
-            )
-
-        def forward(self, input):
-            return self.main.forward(input)
-            
-    if os.path.exists("nn.dat"):
-        with open("nn.dat", "r") as nn_dat:
+    if os.path.exists("nn/nn.dat"):
+        with open("nn/nn.dat", "r") as nn_dat:
             net = pickle.load(nn_dat)
     else:
         print "No neural network present"
