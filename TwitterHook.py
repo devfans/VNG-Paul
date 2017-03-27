@@ -17,7 +17,7 @@ class TwitterHooking(object):
         access_token = config.get(section, "access_token")
         access_token_secret = config.get(section, "access_token_secret")
         cls.ID = config.get(section, "account")
-        cls.mention = '@' + cls.ID
+        cls.mention = '@' + str(cls.ID).lower()
 
         cls.api = TwitterAPI(consumer_token, consumer_secret, access_token, access_token_secret)
 
@@ -69,7 +69,11 @@ class TwitterHooking(object):
     @classmethod
     def reply(cls, item):
         userName = item['user'].get("screen_name", "")
-        inputText = item.get('text', None).replace(cls.mention, '').strip()
+        inputText = item.get('text', None).strip()
+        find = str(inputText).lower().find(cls.mention)
+        if find != -1:
+            mentionText = inputText[find:find+len(cls.mention)]
+            inputText = inputText.replace(mentionText, '')
 
         answer, pic, ok = VaingloryAI.predict(inputText, pic=True)
 
