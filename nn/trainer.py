@@ -2,8 +2,8 @@ import sys
 import os
 import json
 import pickle
-import numpy as np
 
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -32,7 +32,7 @@ for match in matches:
     # Just keep standard and battle royale matches that were completed 
     if match['data']['attributes']['stats']['endGameReason'] != "victory" or match['data']['attributes']['stats']['queue'] not in ['ranked', 'casual', 'casual_aral']:
         continue
-		
+        
     matchData = []
     resultData = None
     for roster_id, roster in match['rosters'].iteritems():
@@ -81,7 +81,7 @@ class Net(nn.Module):
 
     def forward(self, input):
         return self.main.forward(input)
-		
+        
 if os.path.exists("nn.dat"):
     print "Previous neural network found, trying to pick up work where left..."
     with open("nn.dat", "r") as nn_dat:
@@ -100,22 +100,25 @@ target = Variable(torch.FloatTensor(Y).cuda())
 
 print "Starting training..."
 
-for i in xrange(100000000): # arbitrary limit
+try:
+    for i in xrange(100000000): # arbitrary limit
 
-    optimizer.zero_grad()
-    output = net.forward(input)
-    loss = criterion(output, target)
-    loss.backward()
-    optimizer.step()
+        optimizer.zero_grad()
+        output = net.forward(input)
+        loss = criterion(output, target)
+        loss.backward()
+        optimizer.step()
 
-    l = loss.data[0] # current loss
-    if l < 0.1:
-        break
+        l = loss.data[0] # current loss
+        if l < 0.15:
+            break
 
-    if(i % 100 == 99):
-        print "Iteration={} Loss={}".format(i, loss.data[0])
+        if(i % 100 == 99):
+            print "Iteration={} Loss={}".format(i, loss.data[0])
+except KeyboardInterrupt:
+    pass
 
-print "Training finished"
+print "Training stopped"
 
 net.eval()
 
@@ -128,5 +131,5 @@ print "Saving neural network on disk..."
 
 with open("nn.dat", "w") as nn_dat:
     pickle.dump(net, nn_dat)
-	
+    
 print "Neural network saved"

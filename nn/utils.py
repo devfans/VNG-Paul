@@ -1,5 +1,3 @@
-
-
 # Map a value from one range to another
 def translate(value, leftMin, leftMax, rightMin, rightMax):
     py_clip = lambda x, l, u: l if x < l else u if x > u else x
@@ -13,7 +11,7 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
 
     # Convert the 0-1 range into a value in the right range.
     return py_clip(rightMin + (valueScaled * rightSpan), rightMin, rightMax)
-	
+    
 
 def level(x):
    return float(translate(int(x), 1, 30, 0, 1))
@@ -34,9 +32,9 @@ def wins(x):
     return float(translate(int(x), 0, 100000, 0, 1))
 
 def played(x):
-    return float(translate(int(x), 0, 1000000, 0, 1))	
+    return float(translate(int(x), 0, 1000000, 0, 1))   
 
-	
+    
 def heroNameToInt(hero):
     if "Grumpjaw" in hero:
         return 0
@@ -99,4 +97,4 @@ def heroNameToInt(hero):
     elif "Vox" in hero:
         return 30
     else:
-        return -1	
+        return -1   
