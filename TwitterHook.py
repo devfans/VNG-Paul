@@ -76,7 +76,8 @@ class TwitterHooking(object):
             inputText = inputText.replace(mentionText, '')
 
         answer, pic, ok = VaingloryAI.predict(inputText, pic=True)
-
+        if answer is None:
+            logger.error("Invalid answer received!")
         answer = '@' + userName + ' ' + answer
         logger.info("replying to tweet of %s", userName)
         if ok:
