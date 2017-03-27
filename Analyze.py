@@ -38,7 +38,7 @@ class Painter(object):
         self.points = []
 
         if len(winner.valid) < 2:
-            name = "Unknow" if len(winner.valid) < 1 else winner.valid[0]
+            name = "Unknown" if len(winner.valid) < 1 else winner.valid[0]
             pos = self.calculatePosition(name, self.winnerPoints[1], self.nameSize, self.nameFont)
             self.points.append({"position": pos, "content": name, "size": self.nameSize, "color": self.winnerColor, "font": self.nameFont})
         elif len(winner.valid) < 3:
