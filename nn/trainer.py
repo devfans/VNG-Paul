@@ -96,9 +96,10 @@ except KeyboardInterrupt:
 print "Training stopped"
 
 net.eval()
+net.cpu()
 
 # Verification
-#output = net.forward(Variable(torch.FloatTensor([X[2]]).cuda()))
+#output = net.forward(Variable(torch.FloatTensor([X[2]])))
 #print(Y[2])
 #print(output.data[0])
 
