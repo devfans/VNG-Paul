@@ -27,11 +27,12 @@ def eval(participants):
         participants.insert(5, None)
 
     X = []
+    m = []
     
     for participant in participants:
         if participant is not None:
             print str(type(participant))
-            X += [ wins(participant.wins),
+            m += [ wins(participant.wins),
                    ranked(participant.played_ranked),
                    winStreak(participant.winStreak),
                    played(participant.played),
@@ -41,7 +42,7 @@ def eval(participants):
                    float(random.randint(0, 30)) # Random hero selected
                  ]      
         else:
-            X += [ 0,
+            m += [ 0,
                0,
                0,
                0,
@@ -50,6 +51,8 @@ def eval(participants):
                0,
                float(random.randint(0, 30)) # Random hero selected
              ]
+    
+    X.append(m)
 
     if os.path.exists("nn/nn.dat"):
         with open("nn/nn.dat", "r") as nn_dat:
@@ -61,6 +64,7 @@ def eval(participants):
     net.eval()
 
     # Verification
-    output = net.forward(Variable(torch.FloatTensor(X)))
+    logger.info(X)
+    output = net.forward(Variable(torch.FloatTensor([X[0]])))
 
     return output.data[0]
