@@ -39,7 +39,7 @@ class TwitterHooking(object):
             try:
                 iterator = cls.api.request('statuses/filter', {'track': cls.ID}).get_iterator()
                 for item in iterator:
-                    if cls.mention in item.get('text', None):
+                    if cls.mention in item.get('text', None).lower():
                         cls.reply(item)
                     if 'text' in item:
                         print(item['text'])
