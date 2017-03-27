@@ -72,12 +72,11 @@ class TwitterHooking(object):
         inputText = item.get('text', None).replace(cls.mention, '').strip()
 
         answer, pic, ok = Paul.predict(inputText, pic=True)
-        if not ok:
-            logger.debug("Predict failure!")
-            return
 
         answer = '@' + userName + ' ' + answer
         logger.info("replying to tweet of %s", userName)
-
-        r = cls.api.request('statuses/update_with_media', {'status': answer, 'in_reply_to_status_id': item.get('id', None)}, {'media[]': pic})
+        if ok:
+            r = cls.api.request('statuses/update_with_media', {'status': answer, 'in_reply_to_status_id': item.get('id', None)}, {'media[]': pic})
+        else:
+            r = cls.api.request('statuses/update', {'status': answer, 'in_reply_to_status_id': item.get('id', None)})
         logger.info('SUCCESS' if r.status_code == 200 else 'FAILURE')
