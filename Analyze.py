@@ -5,6 +5,8 @@ from PIL import Image, ImageDraw, ImageFont
 import StringIO
 # import uuid
 
+from nn.evaluator import eval as nneval
+
 from Compute import DATA
 
 logger = logging
@@ -74,7 +76,7 @@ class Painter(object):
         pos = self.calculatePosition(value, (431, 591), self.totalSize, self.font, fromEnd=True)
         self.points.append({"position": pos, "content": value, "size": self.totalSize})
 
-        tag, value = winner.getNN()
+        tag, value = c.getNN()
         self.points.append({"position": (77, 644), "content": tag, "size": self.totalSize})
         pos = self.calculatePosition(value, (431, 644), self.totalSize, self.font, fromEnd=True)
         self.points.append({"position": pos, "content": value, "size": self.totalSize})
@@ -117,10 +119,10 @@ class Painter(object):
         pos = self.calculatePosition(value, (925, 591), self.size, self.font, fromEnd=True)
         self.points.append({"position": pos, "content": value, "size": self.totalSize})
 
-        tag, value = loser.getNN()
+        tag, value = c.getNN()
         self.points.append({"position": (571, 644), "content": tag, "size": self.totalSize})
-        pos = self.calculatePosition(value, (925, 644), self.size, self.font, fromEnd=True)
-        self.points.append({"position": pos, "content": value, "size": self.totalSize})
+        pos = self.calculatePosition(1 - value, (925, 644), self.size, self.font, fromEnd=True)
+        self.points.append({"position": pos, "content": 1 - value, "size": self.totalSize})
 
 
 
@@ -175,6 +177,9 @@ class Paul(object):
         VS = (len(c.left.members), len(c.right.members))
         if VS != (1, 1) and VS != (3, 3):
             raise IndecentCompareError()
+            
+        c.leftTeamPredition = nneval(c.left.players + c.right.players)
+            
         if c.left.score > c.right.score:
             c.left.WIN = True
             c.winComment = c.left.getName() + ' will win.'
@@ -267,10 +272,7 @@ class Team(object):
     def trimScore(self, score):
         return "%.2f" % float(score)
 
-
-
-
-
+s
     @staticmethod
     def compute(t):
         Team.recognize(t)
@@ -325,6 +327,7 @@ class Compare(object):
     assistsWeight = 0.4
     farmWeight = 0.3
     levelWeight = 0.3
+    leftTeamPredition = -1.0
 
     winComment = ''
     comment = ''
@@ -335,3 +338,7 @@ class Compare(object):
         self.left = l
         self.right = r
         self.valid = True
+        
+    def getNN(self):
+        return 'PREDICTION', "%.2f" % float(self.leftTeamPredition)
+        
