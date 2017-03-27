@@ -56,31 +56,6 @@ for match in matches:
 print "Total matches kept: {}".format(total)
 
 print "Neural network training..."
-
-class Net(nn.Module):
-    def __init__(self):
-        super(Net, self).__init__()
-        self.main = nn.Sequential(
-            nn.Linear(len(X[0]),96),
-            nn.Sigmoid(),
-            nn.Dropout(p=0.1),
-            nn.Linear(96,64),
-            nn.ReLU(),
-            nn.Dropout(p=0.1),
-            nn.Linear(64,32),
-            nn.Sigmoid(),
-            nn.Dropout(p=0.1),
-            nn.Linear(32,16),
-            nn.ReLU(),
-            #nn.Dropout(p=0.1),
-            nn.Linear(16,8),
-            nn.Sigmoid(),
-            #nn.Dropout(p=0.1),
-            nn.Linear(8,1)
-        )
-
-    def forward(self, input):
-        return self.main.forward(input)
         
 if os.path.exists("nn.dat"):
     print "Previous neural network found, trying to pick up work where left..."
