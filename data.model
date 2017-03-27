@@ -1,0 +1,10 @@
+Hero: samples, wins, loses, surrenders, surrender_to, kills, deaths, assists, minion_kills, jungle_minion_kills, non_jungle_minion_kills, sales, golds, levels
+
+Team: samples, wins, loses, surrenders, surrender_to, kills, deaths, assists, minion_kills, jungle_minion_kills, non_jungle_minion_kills, golds, levels
+
+Couple: assistance
+
+Side: samples, wins, loses, surrenders, surrender_to, kills, deaths, assists, minion_kills,
+jungle_minion_kills, non_jungle_minion_kills, golds, levels,
+
+item: sales, grants, keeps, wins, loses, assistances, kills, deaths,
