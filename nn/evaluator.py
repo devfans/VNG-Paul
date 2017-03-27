@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 
-from utils import level, xp, ranked, lossStreak, winStreak, wins, played
+from nn.utils import level, xp, ranked, lossStreak, winStreak, wins, played
 
 class Net(nn.Module):
     def __init__(self):
