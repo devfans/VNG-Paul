@@ -178,7 +178,7 @@ class VaingloryAI(object):
         if VS != (1, 1) and VS != (3, 3):
             raise IndecentCompareError()
             
-        c.leftTeamPredition = nneval(c.left.players + c.right.players)
+        c.leftTeamPrediction = nneval(c.left.players + c.right.players)
             
         if c.left.score > c.right.score:
             c.left.WIN = True
@@ -326,7 +326,7 @@ class Compare(object):
     assistsWeight = 0.4
     farmWeight = 0.3
     levelWeight = 0.3
-    leftTeamPredition = -1.0
+    leftTeamPrediction = -1.0
 
     winComment = ''
     comment = ''
@@ -339,6 +339,5 @@ class Compare(object):
         self.valid = True
         
     def getNN(self):
-        logger.info(self.leftTeamPredition)
-        return 'PREDICTION', "%.2f" % float(self.leftTeamPredition)
+        return 'PREDICTION', "%.2f" % float(self.leftTeamPrediction)
         
