@@ -10,34 +10,9 @@ import torch
 import torch.nn as nn
 from torch.autograd import Variable
 
-from nn.utils import level, xp, ranked, lossStreak, winStreak, wins, played
+from nn.utils import level, xp, ranked, lossStreak, winStreak, wins, played, Net
 
 logger = logging
-
-class Net(nn.Module):
-    def __init__(self):
-        super(Net, self).__init__()
-        self.main = nn.Sequential(
-            nn.Linear(48,96),
-            nn.Sigmoid(),
-            nn.Dropout(p=0.1),
-            nn.Linear(96,64),
-            nn.ReLU(),
-            nn.Dropout(p=0.1),
-            nn.Linear(64,32),
-            nn.Sigmoid(),
-            nn.Dropout(p=0.1),
-            nn.Linear(32,16),
-            nn.ReLU(),
-            #nn.Dropout(p=0.1),
-            nn.Linear(16,8),
-            nn.Sigmoid(),
-            #nn.Dropout(p=0.1),
-            nn.Linear(8,1)
-        )
-
-    def forward(self, input):
-        return self.main.forward(input)
 
 def eval(participants):
 
@@ -78,8 +53,6 @@ def eval(participants):
 
     if os.path.exists("nn/nn.dat"):
         with open("nn/nn.dat", "r") as nn_dat:
-            logger.info(nn_dat)
-            logger.info(Net())
             net = pickle.load(nn_dat)
     else:
         print "No neural network present"
