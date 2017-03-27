@@ -4,7 +4,7 @@ import json
 from threading import Thread
 
 from TwitterAPI import TwitterAPI, TwitterRequestError, TwitterConnectionError
-from Analyze import Paul
+from Analyze import VaingloryAI
 
 logger = logging
 
@@ -71,7 +71,7 @@ class TwitterHooking(object):
         userName = item['user'].get("screen_name", "")
         inputText = item.get('text', None).replace(cls.mention, '').strip()
 
-        answer, pic, ok = Paul.predict(inputText, pic=True)
+        answer, pic, ok = VaingloryAI.predict(inputText, pic=True)
 
         answer = '@' + userName + ' ' + answer
         logger.info("replying to tweet of %s", userName)

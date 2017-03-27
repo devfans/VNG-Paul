@@ -44,14 +44,14 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
 
     parser = argparse.ArgumentParser(prog='pual.py')
-    parser.add_argument('-c', '--config', action='store', dest='config_file', default='paul.conf')
+    parser.add_argument('-c', '--config', action='store', dest='config_file', default='vaingloryai.conf')
 
     subparsers = parser.add_subparsers(title='subcommands', description='supported subcommands', dest='subcommand')
-    start_parser = subparsers.add_parser('start', help='start paul')
+    start_parser = subparsers.add_parser('start', help='start VaingloryAI')
     start_parser.add_argument('--debug', action='store_true', default=False)
 
-    status_parser = subparsers.add_parser('status', help='check paul status')
-    stop_parser = subparsers.add_parser('stop', help='stop paul')
+    status_parser = subparsers.add_parser('status', help='check VaingloryAI status')
+    stop_parser = subparsers.add_parser('stop', help='stop VaingloryAI')
 
     args = parser.parse_args()
 
@@ -71,23 +71,23 @@ if __name__ == "__main__":
             pf.flush()
             pf.close()
 
-            print "Paul is started..."
+            print "VaingloryAI is started..."
 
     elif args.subcommand == 'stop':
         try:
             pid = int(open(pid_file).readline())
             killPid(pid, True)
-            print "Paul running with pid %s is stopped." % pid
+            print "VaingloryAI running with pid %s is stopped." % pid
         except Exception as e:
             print(str(e))
 
-        print "Paul is stopped."
+        print "VaingloryAI is stopped."
 
     elif args.subcommand == 'status':
         try:
             pid = int(open(pid_file).readline())
             if checkPid(pid):
-                print "Paul is running with pid %s." % pid
+                print "VaingloryAI is running with pid %s." % pid
         except Exception as e:
             print str(e)
         print "Checking done!"

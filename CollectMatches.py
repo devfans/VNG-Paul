@@ -3,7 +3,7 @@ from datetime import datetime
 import time
 import logging
 import Util
-from paul import parseConfig
+from vaingloryai import parseConfig
 
 logger = logging
 
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='CollectMatches.py')
 
     parser.add_argument('--debug', action='store_true', default=False)
-    parser.add_argument('-c', '--config', action='store', dest='config_file', default='paul.conf')
+    parser.add_argument('-c', '--config', action='store', dest='config_file', default='vaingloryai.conf')
 
     args = parser.parse_args()
 

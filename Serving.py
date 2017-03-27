@@ -16,7 +16,7 @@ from tornado import escape
 # from concurrent.futures import ThreadPoolExecutor
 
 import Compute
-from Analyze import Paul
+from Analyze import VaingloryAI
 
 logger = logging
 
@@ -51,7 +51,7 @@ class VS(BaseHandler):
             return
 
         try:
-            ret, ok = Paul.predict(str(compare))
+            ret, ok = VaingloryAI.predict(str(compare))
             if not ok:
                 ret = self.ERROR
         except Exception as e:
@@ -70,14 +70,14 @@ def run():
     else:
         logging.basicConfig(level=logging.INFO)
 
-    from paul import parseConfig
+    from vaingloryai import parseConfig
     config = parseConfig(options)
 
     Compute.DATA.initialize(config)
     hooks = config.get("general", "hooks").split(',')
 
-    from Analyze import Paul
-    Paul.setup(config)
+    from Analyze import VaingloryAI
+    VaingloryAI.setup(config)
 
     if 'twitter' in hooks:
         import TwitterHook

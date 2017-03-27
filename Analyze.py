@@ -148,7 +148,7 @@ class Painter(object):
 
 
 
-class Paul(object):
+class VaingloryAI(object):
     @classmethod
     def setup(cls, config):
         cls.image_dir = config.get('general', 'image_dir')
@@ -187,13 +187,13 @@ class Paul(object):
             c.right.WIN = True
             c.winComment = c.right.getName() + ' will win.'
         elif c.left.score == 0:
-            c.winComment = "Paul think you're kidding."
+            c.winComment = "VaingloryAI think you're kidding."
         else:
-            c.winComment = "Paul will always win, because Paul could be a fool sometimes."
+            c.winComment = "VaingloryAI will always win, because VaingloryAI could be a fool sometimes."
 
         c.invalid = c.left.invalid + c.right.invalid
         if len(c.invalid) > 0:
-            c.unknownComment = '<Paul can not recognize %s' % ', '.join(c.invalid) + '>'
+            c.unknownComment = '<VaingloryAI can not recognize %s' % ', '.join(c.invalid) + '>'
         c.detailComment = "No details for now"
         return c
 
@@ -272,7 +272,6 @@ class Team(object):
     def trimScore(self, score):
         return "%.2f" % float(score)
 
-s
     @staticmethod
     def compute(t):
         Team.recognize(t)
