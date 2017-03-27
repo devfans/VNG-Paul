@@ -76,10 +76,10 @@ class Painter(object):
         pos = self.calculatePosition(value, (431, 591), self.totalSize, self.font, fromEnd=True)
         self.points.append({"position": pos, "content": value, "size": self.totalSize})
 
-        tag, value = c.getNN()
-        self.points.append({"position": (77, 644), "content": tag, "size": self.totalSize})
-        pos = self.calculatePosition(value, (431, 644), self.totalSize, self.font, fromEnd=True)
-        self.points.append({"position": pos, "content": value, "size": self.totalSize})
+        #tag, value = c.getNN()
+        #self.points.append({"position": (77, 644), "content": tag, "size": self.totalSize})
+        #pos = self.calculatePosition(value, (431, 644), self.totalSize, self.font, fromEnd=True)
+        #self.points.append({"position": pos, "content": value, "size": self.totalSize})
 
         if len(loser.valid) < 2:
             name = "Unknow" if len(loser.valid) < 1 else loser.valid[0]
@@ -119,10 +119,10 @@ class Painter(object):
         pos = self.calculatePosition(value, (925, 591), self.totalSize, self.font, fromEnd=True)
         self.points.append({"position": pos, "content": value, "size": self.totalSize})
 
-        tag, value = c.getNN()
-        self.points.append({"position": (571, 644), "content": tag, "size": self.totalSize})
-        pos = self.calculatePosition("%.2f" % (1 - float(value)), (925, 644), self.totalSize, self.font, fromEnd=True)
-        self.points.append({"position": pos, "content": "%.2f" % (1 - float(value)), "size": self.totalSize})
+        #tag, value = c.getNN()
+        #self.points.append({"position": (571, 644), "content": tag, "size": self.totalSize})
+        #pos = self.calculatePosition("%.2f" % (1 - float(value)), (925, 644), self.totalSize, self.font, fromEnd=True)
+        #self.points.append({"position": pos, "content": "%.2f" % (1 - float(value)), "size": self.totalSize})
 
 
 
@@ -182,10 +182,18 @@ class VaingloryAI(object):
             
         if c.left.score > c.right.score:
             c.left.WIN = True
-            c.winComment = c.left.getName() + ' will win.'
+            if c.leftTeamPrediction >= 0.5:
+                c.winComment = c.right.getName() + ' will win.'
+            else:
+                p = int((1.0 - c.leftTeamPrediction) * 100)
+                c.winComment = '{} scored lower but our analysis gives them a {}% of winning..'.format(c.right.getName(), p)
         elif c.left.score < c.right.score:
             c.right.WIN = True
-            c.winComment = c.right.getName() + ' will win.'
+            if leftTeamPrediction < 0.5:
+                c.winComment = c.right.getName() + ' will win.'
+            else:
+                p = int(c.leftTeamPrediction * 100)
+                c.winComment = '{} scored lower but our analysis gives them a {}% of winning..'.format(c.left.getName(), p)
         elif c.left.score == 0:
             c.winComment = "VaingloryAI think you're kidding."
         else:
