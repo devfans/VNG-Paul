@@ -2,7 +2,7 @@
 VaingloryAI is the chatbot that tells you who will win in any possible Vainglory match! Players can @VaingloryAI and find out answers for an array of questions. You can ask about hero vs hero, player vs player, or team vs team, or any combination of heroes and players. This is a fun way for players to see who is better and challenge their friends or guildmates!
 Visit @VaingloryAI on Twitter to try it out!
 
-![Reply-Sample](https://github.com/devfans/VNG-Paul/blob/master/PaulsReply_Sample.png)
+![Reply-Sample](https://github.com/devfans/VNG-Paul/blob/master/AI_Reply_Sample.png)
 
 # Functionality
 Players @ message the Twitter account with their query. There are 5 types of queries: hero vs hero, hero team vs hero team, player vs player, player team vs player team (not actual Vainglory Teams yet), or a mixture of players and heroes. Queries are structured as follows:
