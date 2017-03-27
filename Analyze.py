@@ -34,7 +34,7 @@ class Painter(object):
 
 
     def __init__(self, c):
-        winner, loser = (c.left, c.right) if c.left.WIN else (c.right, c.left)
+        winner, loser = (c.left, c.right) #if c.left.WIN else (c.right, c.left)
         self.points = []
 
         if len(winner.valid) < 2:
@@ -347,6 +347,6 @@ class Compare(object):
         self.valid = True
         
     def getNN(self):
-        logger.info('PREDICTION %s', self.leftTeamPrediction)
+        logger.info('PREDICTION {}'.format(self.leftTeamPrediction))
         return 'PREDICTION', "%.2f" % float(self.leftTeamPrediction)
         
