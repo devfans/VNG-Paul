@@ -9,7 +9,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 
-from nn.utils import heroNameToInt, level, xp, ranked, lossStreak, winStreak, wins, played
+from nn.utils import heroNameToInt, level, xp, ranked, lossStreak, winStreak, wins, played, Net
 
 
 print "Loading matches data..."
