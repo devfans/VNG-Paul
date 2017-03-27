@@ -347,5 +347,6 @@ class Compare(object):
         self.valid = True
         
     def getNN(self):
+        logger.info('PREDICTION %s', self.leftTeamPrediction)
         return 'PREDICTION', "%.2f" % float(self.leftTeamPrediction)
         
