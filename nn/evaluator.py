@@ -61,6 +61,7 @@ def eval(participants):
     net.eval()
 
     # Verification
+    logger.info(X)
     output = net.forward(Variable(torch.FloatTensor([X])))
 
     return output.data[0]
