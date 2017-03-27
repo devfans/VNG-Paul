@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import pickle
+import random
 
 import numpy as np
 import torch
@@ -27,13 +28,14 @@ def eval(participants):
     
     for participant in participants:
         if participant is not None:
-            X += [ wins(participant['wins']),
-                   ranked(participant['played_ranked']),
-                   winStreak(participant['winStreak']),
-                   played(participant['played']),
-                   lossStreak(participant['lossStreak']),
-                   level(participant['level']),
-                   xp(participant['xp']),
+            print str(type(participant))
+            X += [ wins(participant.wins),
+                   ranked(participant.played_ranked),
+                   winStreak(participant.winStreak),
+                   played(participant.played),
+                   lossStreak(participant.lossStreak),
+                   level(participant.level),
+                   xp(participant.xp),
                    float(random.randint(0, 30)) # Random hero selected
                  ]      
         else:
