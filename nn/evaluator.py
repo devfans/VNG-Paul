@@ -1,3 +1,4 @@
+import logging
 import sys
 import os
 import json
@@ -7,10 +8,11 @@ import random
 import numpy as np
 import torch
 import torch.nn as nn
-import torch.optim as optim
 from torch.autograd import Variable
 
 from nn.utils import level, xp, ranked, lossStreak, winStreak, wins, played
+
+logger = logging
 
 class Net(nn.Module):
     def __init__(self):
@@ -76,6 +78,8 @@ def eval(participants):
 
     if os.path.exists("nn/nn.dat"):
         with open("nn/nn.dat", "r") as nn_dat:
+            logger.info(nn_dat)
+            logger.info(Net())
             net = pickle.load(nn_dat)
     else:
         print "No neural network present"
