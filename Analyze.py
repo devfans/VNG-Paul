@@ -189,7 +189,7 @@ class VaingloryAI(object):
                 c.winComment = '{} scored lower but our analysis gives them a {}% of winning..'.format(c.right.getName(), p)
         elif c.left.score < c.right.score:
             c.right.WIN = True
-            if leftTeamPrediction < 0.5:
+            if c.leftTeamPrediction < 0.5:
                 c.winComment = c.right.getName() + ' will win.'
             else:
                 p = int(c.leftTeamPrediction * 100)
