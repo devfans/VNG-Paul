@@ -18,7 +18,7 @@ class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
         self.main = nn.Sequential(
-            nn.Linear(len(X[0]),96),
+            nn.Linear(48,96),
             nn.Sigmoid(),
             nn.Dropout(p=0.1),
             nn.Linear(96,64),
