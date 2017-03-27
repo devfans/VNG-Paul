@@ -121,7 +121,7 @@ class Painter(object):
 
         tag, value = c.getNN()
         self.points.append({"position": (571, 644), "content": tag, "size": self.totalSize})
-        pos = self.calculatePosition("%.2f" % (1 - float(value)), (925, 644), self.size, self.font, fromEnd=True)
+        pos = self.calculatePosition("%.2f" % (1 - float(value)), (925, 644), self.totalSize, self.font, fromEnd=True)
         self.points.append({"position": pos, "content": "%.2f" % (1 - float(value)), "size": self.totalSize})
 
 
