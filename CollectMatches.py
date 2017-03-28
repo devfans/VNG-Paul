@@ -13,7 +13,7 @@ class Collector(object):
     OFFSET = 641
 
     @classmethod
-    def setup(config):
+    def setup(cls, config):
         cls.URL = config.get("vainglory", "api_url")
         cls.Key = config.get("vainglory", "api_key")
         cls.MATCH_DIR = config.get("vainglory", "match_dir")
