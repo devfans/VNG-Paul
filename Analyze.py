@@ -186,14 +186,14 @@ class VaingloryAI(object):
                 c.winComment = c.left.getName() + ' will win.'
             else:
                 p = int((1.0 - c.leftTeamPrediction) * 100)
-                c.winComment = '{} scored lower but our analysis gives them a {}% of winning..'.format(c.right.getName(), p)
+                c.winComment = '{} scored lower but our analysis gives them a {}% of winning.'.format(c.right.getName(), p)
         elif c.left.score < c.right.score:
             c.right.WIN = True
             if c.leftTeamPrediction < 0.5:
                 c.winComment = c.right.getName() + ' will win.'
             else:
                 p = int(c.leftTeamPrediction * 100)
-                c.winComment = '{} scored lower but our analysis gives them a {}% of winning..'.format(c.left.getName(), p)
+                c.winComment = '{} scored lower but our analysis gives them a {}% of winning.'.format(c.left.getName(), p)
         elif c.left.score == 0:
             c.winComment = "VaingloryAI think you're kidding."
         else:
