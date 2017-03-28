@@ -304,14 +304,20 @@ class Team(object):
         for m in t.members:
             if len(t.valid) > 3:
                 break
-            if m in DATA.PLAYERLIST:
-                t.players.append(DATA.PLAYERS.get(DATA.PLAYERLIST[m]))
-                t.valid.append(m)
-            elif m.lower() in DATA.HEROLIST.keys():
+            
+            if m.lower() in DATA.HEROLIST.keys():
                 t.heroes.append(DATA.HEROES.get(DATA.HEROLIST[m.lower()]))
                 t.valid.append(DATA.HEROLIST[m.lower()].replace('*',''))
             else:
-                t.invalid.append(m)
+                player = DATA.getPlayerbyLastMC(m)
+                if m is not None:
+                    t.players.append(player)
+                    t.valid.append(m)
+                elif m in DATA.PLAYERLIST:
+                    t.players.append(DATA.PLAYERS.get(DATA.PLAYERLIST[m]))
+                    t.valid.append(m)
+                else:
+                    t.invalid.append(m)
 
     @staticmethod
     def score(t):
