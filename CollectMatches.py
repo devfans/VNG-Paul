@@ -44,7 +44,10 @@ class Collector(object):
                            "X-TITLE-ID": "semc-vainglory",
                            "Accept": "application/vnd.api+json"}
         mc = Util._requestX(cls.URL, params=payload, headers=headers, retry=2)
-	return cls.saveMatches(mc, ret=True)
+	if 'included' in mc:
+	    return cls.saveMatches(mc, ret=True)
+        else:
+	    logger.error(mc)
 	
 
     @classmethod
