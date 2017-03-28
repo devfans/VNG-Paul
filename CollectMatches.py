@@ -36,12 +36,12 @@ class Collector(object):
     def requestLastMatches(cls, playerName, count=10):
         payload = {
             "page[limit]": count,
-			"filter[playerNames]": playerName,
+			"filter[playerName]": playerName,
 			"sort": "-createdAt",
 			"filter[createdAt-start]": "2017-01-01T00:00:00Z"
         }
 
-        headers = {"Authorization": cls.Key,
+        headers = {"Authorization": "Bearer " + cls.Key,
                            "X-TITLE-ID": "semc-vainglory",
                            "Accept": "application/vnd.api+json"}
         mc = Util._requestX(cls.URL, params=payload, headers=headers, retry=2)
