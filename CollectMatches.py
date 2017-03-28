@@ -44,11 +44,13 @@ class Collector(object):
                            "X-TITLE-ID": "semc-vainglory",
                            "Accept": "application/vnd.api+json"}
         mc = Util._requestX(cls.URL, params=payload, headers=headers, retry=2)
-	logger.info(json.dumps(mc))
-        return mc		
+	return cls.saveMatches(mc, ret=True)
+	
 
     @classmethod
-    def saveMatches(cls, mc):
+    def saveMatches(cls, mc, ret=False):
+	if ret:
+	    matches = []
         metas = {"participant": {}, "roster": {}, "player": {}}
 
         for i in mc["included"]:
@@ -79,9 +81,14 @@ class Collector(object):
             match["rosters"] = {}
             for rId in rosterIds:
                 match["rosters"][rId] = metas["roster"][rId]
-
-            Util.saveData(file, match)
-            cls.MATCHES += 1
+	    if ret:
+		matches.append(match)
+	    else:
+		Util.saveData(file, match)
+		cls.MATCHES += 1
+	if ret:
+	    return matches
+	
 
     @classmethod
     def start(cls):
