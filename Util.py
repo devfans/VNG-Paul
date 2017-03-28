@@ -14,8 +14,8 @@ def _requestX(url, headers=None, post=False, data=None, jsonData=None, params=No
         meta["json"] = jsonData
     if params is not None:
         meta["params"] = params
-    logger.info(meta)
-    logger.info(url)
+    if headers is not None:
+        meta["headers"] = headers
     # print meta
     for i in xrange(retry):
         try:
