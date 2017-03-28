@@ -179,8 +179,11 @@ class VaingloryAI(object):
         VS = (len(c.left.members), len(c.right.members))
         if VS != (1, 1) and VS != (3, 3):
             raise IndecentCompareError()
-            
-        c.leftTeamPrediction = nneval(c.left.players + c.right.players)
+        try:
+            c.leftTeamPrediction = nneval(c.left.players + c.right.players)
+        except Exception as e:
+            logger.info("NN prediction failed")
+            logger.debug(e)
             
         if c.left.score > c.right.score:
             c.left.WIN = True
