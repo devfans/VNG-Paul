@@ -310,7 +310,7 @@ class Team(object):
                 t.valid.append(DATA.HEROLIST[m.lower()].replace('*',''))
             else:
                 player = DATA.getPlayerByLastMC(m)
-                if m is not None:
+                if player is not None:
                     t.players.append(player)
                     t.valid.append(m)
                 elif m in DATA.PLAYERLIST:
