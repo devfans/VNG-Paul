@@ -35,7 +35,7 @@ class Collector(object):
     @classmethod
     def requestLastMatches(cls, playerName, count=10):
         payload = {
-            "page[limit]": 10,
+            "page[limit]": count,
 			"filter[playerNames]": playerName,
 			"sort": "-createdAt",
 			"filter[createdAt-start]": "2017-01-01T00:00:00Z"
