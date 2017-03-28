@@ -187,7 +187,7 @@ class DATA(object):
         for ID, p in cls.PLAYERS.iteritems():
             key = p.name
             cls.PLAYERLIST[key] = ID
-
+        Collector.setup(config)
         logger.info("Game data is initialized!")
 
     @classmethod
