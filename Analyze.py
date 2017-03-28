@@ -155,7 +155,7 @@ class VaingloryAI(object):
         cls.background = os.path.join(cls.image_dir, config.get('general', 'background'))
 
         Painter.setup(config)
-        cls.invalidCompare = "Please enter a 1v1 or 3v3 matchup! Thanks!"
+        cls.invalidCompare = u"😝Please enter a 1v1 or 3v3 matchup! Thanks!"
 
     @classmethod
     def feed(cls, inputText):
@@ -309,7 +309,8 @@ class Team(object):
                 t.heroes.append(DATA.HEROES.get(DATA.HEROLIST[m.lower()]))
                 t.valid.append(DATA.HEROLIST[m.lower()].replace('*',''))
             else:
-                player = DATA.getPlayerByLastMC(m)
+                # player = DATA.getPlayerByLastMC(m)
+                player = None
                 if player is not None:
                     t.players.append(player)
                     t.valid.append(m)
