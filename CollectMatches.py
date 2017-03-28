@@ -44,8 +44,7 @@ class Collector(object):
         headers = {"Authorization": "Bearer " + cls.Key,
                            "X-TITLE-ID": "semc-vainglory",
                            "Accept": "application/vnd.api+json"}
-        res = Util._requestX(cls.URL, params=payload, headers=headers, retry=30)
-        mc = json.loads(res)
+        mc = Util._requestX(cls.URL, params=payload, headers=headers, retry=30)
         return mc		
 
     @classmethod
