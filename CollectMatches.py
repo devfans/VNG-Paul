@@ -41,7 +41,7 @@ class Collector(object):
 			"filter[createdAt-start]": "2017-01-01T00:00:00Z"
         }
 
-        headers = {"Authorization": "Bearer " + cls.Key,
+        headers = {"Authorization": cls.Key,
                            "X-TITLE-ID": "semc-vainglory",
                            "Accept": "application/vnd.api+json"}
         mc = Util._requestX(cls.URL, params=payload, headers=headers, retry=2)
