@@ -37,7 +37,7 @@ class Collector(object):
         payload = {
             "page[limit]": count,
 	    "page[offset]": 0,
-	    "filter[playerName]": playerName,
+	    "filter[playerNames]": playerName,
         }
 
         headers = {"Authorization": "Bearer " + cls.Key,
