@@ -33,7 +33,7 @@ class Collector(object):
         return mc
 		
     @classmethod
-    def requestLast10Matches(cls, playerName):
+    def requestLastMatches(cls, playerName, count=10):
         payload = {
             "page[limit]": 10,
 			"filter[playerNames]": playerName,
@@ -44,7 +44,7 @@ class Collector(object):
         headers = {"Authorization": "Bearer " + cls.Key,
                            "X-TITLE-ID": "semc-vainglory",
                            "Accept": "application/vnd.api+json"}
-        mc = Util._requestX(cls.URL, params=payload, headers=headers, retry=30)
+        mc = Util._requestX(cls.URL, params=payload, headers=headers, retry=2)
         return mc		
 
     @classmethod
