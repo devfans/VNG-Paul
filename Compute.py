@@ -192,13 +192,12 @@ class DATA(object):
 
     @classmethod
     def getPlayerByLastMC(cls, playerName):
-        Matches = {}
+        matches = None
         try:
-            Matches = Collector.requestLastMatches(playerName, count=10)
+            matches = Collector.requestLastMatches(playerName, count=10)
         except Exception as e:
             logger.exception(e)
-            
-        logger.info(json.dumps(Matches))
+        logger.info(matches)
         return None
 
     @classmethod
