@@ -191,14 +191,14 @@ class DATA(object):
         logger.info("Game data is initialized!")
 
     @classmethod
-    def getLastMC(cls, playerName):
+    def getPlayerByLastMC(cls, playerName):
         try:
             Matches = Collector.requestLast10Matches(playerName)
         except Exception as e:
             logger.exception(e)
             
         logger.info(json.dumps(Matches))
-        return []
+        return None
 
     @classmethod
     def consume(cls, m):
