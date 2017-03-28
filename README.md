@@ -47,8 +47,13 @@ First, install pip packages for Tornado, Pillow and TwitterAPI
 sudo pip install Tornado
 sudo pip install Pillow
 sudo pip install TwitterAPI
+# For the Neural Network
+sudo pip install http://download.pytorch.org/whl/cu75/torch-0.1.10.post2-cp27-none-linux_x86_64.whl 
+sudo pip install torchvision
 ```
 Next, register a Twitter account and create a Twitter application. When the Twitter application is ready, you will have the API token and your secret. You will also need to generate an access token with post permissions (for replying to players). Write these parameters in vaingloryai.conf after you make a clone of the repo.
+## Neural network training (optional)
+If you don't want to reuse our trained neural network or want to improve it, you need to do the following instructions. First of all, we advice you to use a computer with GPU compatible with CUDA 7.5 or 8.0 as it is stated on [pytorch website](http://pytorch.org/). Then run `python nn/trainer.py` to start the training process. Line 69: you can set the learning rate (`lr`) of the training process and line 88 you can change the loss target (representation of the difference with the expected outputs and the computed ones). The closest the loss value gets to zero the closest it will match the training set expected outputs. You can stop the training with a `Ctrl+C` the current state of the training will be saved then allowing you to resume the training afterwards. 
 ## Clone and Start
 ```
 git clone https://github.com/devfans/VNG-Paul.git
