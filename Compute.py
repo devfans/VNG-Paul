@@ -3,6 +3,8 @@ from os import listdir, path
 import sys
 import logging
 
+from CollectMatches import Collector
+
 logger = logging
 
 def getMatches(filePath):
@@ -188,7 +190,15 @@ class DATA(object):
 
         logger.info("Game data is initialized!")
 
-
+    @classmethod
+    def getLastMC(cls, playerName):
+        try:
+            Matches = Collector.requestLast10Matches(playerName)
+        except Exception as e:
+            logger.exception(e)
+            
+        logger.info(json.dumps(Matches))
+        return []
 
     @classmethod
     def consume(cls, m):
