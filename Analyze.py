@@ -182,6 +182,7 @@ class VaingloryAI(object):
         try:
             c.leftTeamPrediction = nneval(c.left.players + c.right.players)
         except Exception as e:
+            c.leftTeamPrediction = -1
             logger.info("NN prediction failed")
             logger.debug(e)
             
