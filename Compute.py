@@ -120,9 +120,9 @@ class Hero(object):
         self.deaths += h.deaths
         self.assists += h.assists
         self.farm += h.farm
-        self.xp = max(self.xp, p.xp)
-        self.played = max(self.played, p.played)
-        self.played_ranked = max(self.played_ranked, p.played_ranked)
+        self.xp = max(self.xp, h.xp)
+        self.played = max(self.played, h.played)
+        self.played_ranked = max(self.played_ranked, h.played_ranked)
         
         self.winStreak += h.winStreak
         self.lossStreak += h.lossStreak
