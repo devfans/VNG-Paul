@@ -184,7 +184,8 @@ class VaingloryAI(object):
         except Exception as e:
             c.leftTeamPrediction = -1
             logger.info("NN prediction failed")
-            logger.debug(e)
+            print(str(e))
+            logger.exception(e)
             
         if c.left.score > c.right.score:
             c.left.WIN = True
