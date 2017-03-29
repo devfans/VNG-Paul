@@ -105,6 +105,9 @@ class Hero(object):
         self.samples = 1
 
         playerStats = hero["player"]["attributes"]["stats"]
+        self.played = playerStats["played"] or 0
+        self.played_ranked = playerStats["played_ranked"] or 0
+        self.xp = playerStats["xp"] or 0
         self.winStreak = playerStats["winStreak"]
         self.lossStreak = playerStats["lossStreak"]
         self.level = playerStats["level"]
@@ -117,7 +120,10 @@ class Hero(object):
         self.deaths += h.deaths
         self.assists += h.assists
         self.farm += h.farm
-
+        self.xp = max(self.xp, p.xp)
+        self.played = max(self.played, p.played)
+        self.played_ranked = max(self.played_ranked, p.played_ranked)
+        
         self.winStreak += h.winStreak
         self.lossStreak += h.lossStreak
         self.level += h.level
