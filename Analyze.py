@@ -179,24 +179,29 @@ class VaingloryAI(object):
         VS = (len(c.left.members), len(c.right.members))
         if VS != (1, 1) and VS != (3, 3):
             raise IndecentCompareError()
+        nnPrediction = True
         try:
             c.leftTeamPrediction = nneval(c.left.players + c.left.heroes + c.right.players + c.right.heroes)
         except Exception as e:
-            c.leftTeamPrediction = -1
+            nnPrediction = False
             logger.info("NN prediction failed")
             print(str(e))
             logger.exception(e)
             
         if c.left.score > c.right.score:
             c.left.WIN = True
-            if c.leftTeamPrediction >= 0.5:
+            if not nnPrediction:
+                c.winComment = c.left.getName() + ' will win.'
+            elif c.leftTeamPrediction >= 0.5:
                 c.winComment = c.left.getName() + ' will win.'
             else:
                 p = int((1.0 - c.leftTeamPrediction) * 100)
                 c.winComment = '{} scored lower but our analysis gives them a {}% of winning.'.format(c.right.getName(), p)
         elif c.left.score < c.right.score:
             c.right.WIN = True
-            if c.leftTeamPrediction < 0.5:
+            if not nnPrediction:
+                c.winComment = c.right.getName() + ' will win.'
+            elif c.leftTeamPrediction < 0.5:
                 c.winComment = c.right.getName() + ' will win.'
             else:
                 p = int(c.leftTeamPrediction * 100)
