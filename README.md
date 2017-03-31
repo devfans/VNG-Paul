@@ -2,7 +2,7 @@
 VaingloryAI is the chatbot that tells you who will win in any possible Vainglory match! Players can @VaingloryAI and find out answers for an array of questions. You can ask about hero vs hero, player vs player, or team vs team, or any combination of heroes and players. This is a fun way for players to see who is better and challenge their friends or guildmates!
 Visit @VaingloryAI on Twitter to try it out!
 
-![Reply-Sample](https://github.com/devfans/VNG-Paul/blob/master/AI_Reply_Sample.png)
+![Reply-Sample](https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/vai_photo.jpg)
 
 # Functionality
 Players @ message the Twitter account with their query. There are 5 types of queries: hero vs hero, hero team vs hero team, player vs player, player team vs player team (not actual Vainglory Teams yet), or a mixture of players and heroes. Queries are structured as follows:
@@ -13,8 +13,8 @@ Players @ message the Twitter account with their query. There are 5 types of que
 @VaingloryAI player1+player2+Lyra vs Lance+Joule+Adagio
 VaingloryAI will reply back to the player with the predicted outcome and an image of how they were scored. 
 If the bot receives a query for a player that we are unable to retreive data for, we will return an error message and remind them that Vainglory player names are case sensitive.
-[Put the image for scores here]
-[Add a line break and put a screenshot of the Twitter conversation here]
+![Score-sample](https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/AI_sample.jpg)
+![Conversation](https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/Conversation.png)
 # Design
 The VaingloryAI selection of the winner is based on two components: Score Calcuations and a NeuralNet Prediction. When both are in agreement, we simply return the predicted result. When there is a disagreement we answer saying the player/hero score was lower but that our analysis puts them in the lead. 
 ## Score Calculations
