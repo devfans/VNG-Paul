@@ -16,8 +16,13 @@ Players @ message the Twitter account with their query. There are 5 types of que
 @VaingloryAI player1+player2+Lyra vs Lance+Joule+Adagio
 VaingloryAI will reply back to the player with the predicted outcome and an image of how they were scored. 
 If the bot receives a query for a player that we are unable to retreive data for, we will return an error message and remind them that Vainglory player names are case sensitive.
-![Score-sample](https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/AI_sample.jpg)
-![Conversation](https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/Conversation.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/AI_sample.jpg" alt="Sublime's custom image" width="800" />
+</p>
+Tweet Sample:
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/Conversation.png" alt="Sublime's custom image" height="800"/>
+</p>
 # Design
 The VaingloryAI selection of the winner is based on two components: Score Calcuations and a NeuralNet Prediction. When both are in agreement, we simply return the predicted result. When there is a disagreement we answer saying the player/hero score was lower but that our analysis puts them in the lead. 
 ## Score Calculations
