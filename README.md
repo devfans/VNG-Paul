@@ -23,6 +23,7 @@ Tweet Sample:
 <p align="center">
   <img src="https://raw.githubusercontent.com/devfans/VaingloryAI/master/misc/Conversation.png" alt="Sublime's custom image" height="800"/>
 </p>
+
 # Design
 The VaingloryAI selection of the winner is based on two components: Score Calcuations and a NeuralNet Prediction. When both are in agreement, we simply return the predicted result. When there is a disagreement we answer saying the player/hero score was lower but that our analysis puts them in the lead. 
 ## Score Calculations
